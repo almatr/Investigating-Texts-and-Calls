@@ -1,0 +1,128 @@
+
+Exercise : Task0.py
+
+In this exercise, we are accesing the first and last elements so the input length does not matter.
+In the first print statement there are the following:
+texts[0][0] ––> this is O(2)   O(1) to access the row plus O(1) to access the element in tuple
+texts[0][1] ––> this is O(2)   O(1) to access the row plus O(1) to access the element in tuple
+texts[0][2] ––> this is O(2)   O(1) to access the row plus O(1) to access the element in tuple
+print statm ––> this is O(1)   prints 1 statement so it is constant
+–––––––––––––––––––––––––––––
+Total                  O(7)
+
+
+In the second print statement there are the following:
+callsLen=len(calls)-1  this is O(1)   according to https://wiki.python.org/moin/TimeComplexity
+calls[callsLen][0] ––> this is O(2)   O(1) to access the row plus O(1) to access the element in tuple
+calls[callsLen][1] ––> this is O(2)   O(1) to access the row plus O(1) to access the element in tuple
+calls[callsLen][2] ––> this is O(2)   O(1) to access the row plus O(1) to access the element in tuple
+calls[callsLen][3] ––> this is O(2)   O(1) to access the row plus O(1) to access the element in tuple
+print statm        ––> this is O(1)   prints 1 statement so it is constant
+–––––––––––––––––––––––––––––––––––
+Total                          O(10)
+
+This exercise's time complexity evaluates to O(17). Both function don't depend on the input size
+
+
+
+Exercise : Task1.py
+
+In the function def createUniqueList(firstList, secondList), there are following:
+initiate empty list      ––> this is O(1)      executes once only and does not depends on input size
+two loops + 2 if statm   ––> this is O(2n^2+2n+2)
+                                               there are two lists to iterate over. First loop takes a first list which
+                                               is O(1) then, loop that iterates over that list will take O(n) (depends
+                                               on input size and rate of increase is linear) and two "if statements"
+                                               will take O(n) each as it have to loop as well for "not in". This brings
+                                               us to : O(1) + O(n) * O(n) + O(n) = O(n^2+n+1)
+                                               By multuplying this by 2 (for each list)
+                                               we have 2*(O(n^2+n+1)) = O(2n^2+2n+2)
+return statm        ––> this is O(1)           executes once only and does not depends on input size
+print statm         ––> this is O(1)           prints 1 statement so it is constant
+–––––––––––––––––––––––––––––––––––
+Total                          O(2n^2+2n+5)
+
+This exercise's time complexity evaluates to O(2n^2+2n+5). Because this function(createUniqueList) depends on input size,
+we can ignore constants and conclude that the complexity for this exercise is O(n^2).
+
+
+
+Exercise : Task2.py
+
+In findMaxTime function:
+loop through calls          ––> this is O(n) Loops through each call record onces, input size matters and increases
+                                linearly
+"in" operation (2x)         ––> this is O(2) Uses hash table which is O(1) for each dictionary search
+                                https://www.quora.com/What-is-the-time-complexity-of-checking-if-a-key-is-in-a-
+                                dictionary-in-Python
+
+max function                ––> this is O(n) The only way to find max/min is to loop through the elements
+                                reference: https://wiki.python.org/moin/TimeComplexity
+print statm                 ––> this is O(1) prints 1 statement so it is constant
+findTimeInSec               ––> this is O(1). The function will execute once and does not depend on input size
+–––––––––––––––––––––––––––––––––––
+Total                          O(2n+4)
+
+This exercise's time complexity evaluates to O(2n+4). The efficiency of this depends on the input size, so
+the simplification of this run time analysis would be O(n)
+
+
+
+Exercise : Task3.py
+
+allBanCalls(allCalls) function has the following :
+
+first loop                 ––> this is O(n) Loops through each call record onces, input size matters and increases
+                               linearly
+if statm for fixed lines   ––> this is O(n+7) there are 7 accesses of elements in list and one "not in" operation
+                               (which is n - iterates over each element in a list once)
+                               reference : https://wiki.python.org/moin/TimeComplexity
+
+if statm for mobile lines  ––> this is O(2n+5) there are 5 accesses of elements in list and one "not in" operation for
+                               O(n) plus one "in" operation for O(n) (both iterate over each element in a list once)
+
+if statm for telemkt lines ––> this is O(2n+6) there are 6 accesses of elements in list and two "in" operations(both
+                               iterate over each element in a list once)
+sort                       ––> this is O(n log n) reference: https://wiki.python.org/moin/TimeComplexity
+
+printAreaCodes(listOfCodes) function has the following :
+print statm                ––> this is this is O(n) prints element by element, input size matters and increases
+                               linearly
+loop                       ––> this is O(n) Loops through each record onces, input size matters and increases
+                               linearly
+–––––––––––––––––––––––––––––––––––
+Total                          O(n log n+7n+19)
+
+This exercise's time complexity evaluates to  O(n log n+7n+19)). Both functions (allBanCalls and printAreaCodes) depend on
+input size n but in allBanCalls there is a sort function that has complexity of O(n log n) , the simplification of
+this run time analysis would be O(n log n)
+
+Exercise : Task4.py
+
+possTelemarkterers(calls, texts) function has the following :
+
+zip functions(2x)     ––> this is O(2) Each zip operation is O(1) according to : "https://stackoverflow.com/questions/
+                           36877715/what-is-the-time-complexity-of-zip-in-python?rq=1"
+
+cast to list(2x)      ––>  this is O(2n) I believe that each element has to be copied to a list so I assumed this is
+                           O(n) for each casting to a list
+cast list to set(4x)  ––>  this is O(4n) each cast takes O(n) according to : https://stackoverflow.com/questions/
+                           34642155/what-is-time-complexity-of-a-list-to-set-conversion
+access elements
+in list(4x)           ––> this is O(4) access each element with a given index
+first loop            ––> this is O(n) Loops through each call record onces, input size matters and increases linearly
+get element in list   ––> this is O(1) executes once only to get an element from a list with a given index
+"not in" (4x)         ––> this is O(n^3) for each "not in" operation and is inner function (under first loop).
+                          reference: https://wiki.python.org/moin/TimeComplexity
+append element        ––> this is O(1) reference: https://wiki.python.org/moin/TimeComplexity
+sort                  ––> this is O(n log n) reference: https://wiki.python.org/moin/TimeComplexity
+
+printNums(listOfNums) function has the following :
+print statm           ––> prints 1 statement so it is constant
+loop                  ––> this is O(n) Loops through each record onces, input size matters and increases
+                          linearly
+–––––––––––––––––––––––––––––––––––
+Total                     O(n^4+nlogn+3n+8)
+
+This exercise's time complexity evaluates to O(n^4+nlogn+3n+8). the simplification of this run time analysis would
+be O(n^4)
